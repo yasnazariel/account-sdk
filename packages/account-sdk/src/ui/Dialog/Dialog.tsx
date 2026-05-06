@@ -126,16 +126,18 @@ export const DialogContainer: FunctionComponent = (props) => {
     // Only enable drag on mobile portrait mode
     if (!isPhonePortrait()) return;
 
-    const touch = e.touches[0];
-    setStartY(touch.clientY);
+const touch = e.touches[0];
+if (!touch) return;
+setStartY(touch.clientY);
     setIsDragging(true);
   };
 
   const handleTouchMove = (e: JSX.TargetedTouchEvent<HTMLDivElement>) => {
     if (!isDragging) return;
 
-    const touch = e.touches[0];
-    const deltaY = touch.clientY - startY;
+const touch = e.touches[0];
+if (!touch) return;
+const deltaY = touch.clientY - startY;
 
     // Only allow dragging down (positive deltaY)
     if (deltaY > 0) {
